@@ -33,10 +33,13 @@ jobs:
           channel: 'stable'
           cache: true
 
-      - name: Verify Flutter & Android Environment
-        run: flutter doctor -v
+      - name: Set up Android SDK Tools & Licenses
+        run: |
+          yes | sdkmanager --licenses || true
+          sdkmanager "platforms;android-34" "platforms;android-35" "platforms;android-36" "build-tools;36.0.0" || true
+          flutter doctor -v
 
-      - name: Install Monorepo Package Dependencies
+      - name: Install Monorepo Dependencies
         run: |
           for pkg in packages/project_model packages/timeline_engine packages/editing_commands packages/media_bridge apps/mobile; do
             echo "Resolving dependencies in $pkg..."
@@ -53,33 +56,35 @@ jobs:
           echo "Running mobile app tests..."
           (cd apps/mobile && flutter test)
 
-      - name: Build Debug APK
-        run: |
-          cd apps/mobile
-          flutter build apk --debug
-          cp build/app/outputs/flutter-apk/app-debug.apk build/app/outputs/flutter-apk/rangyantra-studio-debug.apk
-
       - name: Build Release APK
         run: |
           cd apps/mobile
           flutter build apk --release
           cp build/app/outputs/flutter-apk/app-release.apk build/app/outputs/flutter-apk/rangyantra-studio-release.apk
 
+      - name: Build Debug APK
+        run: |
+          cd apps/mobile
+          flutter build apk --debug
+          cp build/app/outputs/flutter-apk/app-debug.apk build/app/outputs/flutter-apk/rangyantra-studio-debug.apk
+
       - name: Upload APKs as Workflow Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: rangyantra-studio-apks
           path: |
-            apps/mobile/build/app/outputs/flutter-apk/rangyantra-studio-debug.apk
             apps/mobile/build/app/outputs/flutter-apk/rangyantra-studio-release.apk
+            apps/mobile/build/app/outputs/flutter-apk/rangyantra-studio-debug.apk
 
       - name: Publish APK to GitHub Release
-        if: startsWith(github.ref, 'refs/tags/v')
         uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/v')
         with:
+          tag_name: ${{ github.ref_name }}
+          name: RangYantra Studio ${{ github.ref_name }}
           files: |
-            apps/mobile/build/app/outputs/flutter-apk/rangyantra-studio-debug.apk
             apps/mobile/build/app/outputs/flutter-apk/rangyantra-studio-release.apk
+            apps/mobile/build/app/outputs/flutter-apk/rangyantra-studio-debug.apk
           generate_release_notes: true
           draft: false
           prerelease: false
