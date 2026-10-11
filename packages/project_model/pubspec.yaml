@@ -1,0 +1,20 @@
+name: project_model
+description: "Core document model, track/clip definitions, and JSON serialization for RangYantra Studio."
+publish_to: 'none'
+version: 0.0.1
+
+environment:
+  sdk: ^3.13.5
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  uuid: ^4.6.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:

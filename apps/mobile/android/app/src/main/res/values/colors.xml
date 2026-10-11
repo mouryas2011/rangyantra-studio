@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="splash_background">#080B10</color>
+    <color name="brand_saffron">#FF7A00</color>
+    <color name="brand_cyan">#00D9FF</color>
+    <color name="brand_surface">#111923</color>
+</resources>

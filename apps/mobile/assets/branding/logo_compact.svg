@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Background Gradient for Icon Container -->
+    <radialGradient id="bgGlow" cx="50%" cy="50%" r="50%" fx="30%" fy="30%">
+      <stop offset="0%" stop-color="#142132"/>
+      <stop offset="100%" stop-color="#080B10"/>
+    </radialGradient>
+
+    <!-- Saffron Flare Gradient -->
+    <linearGradient id="saffronGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFC857"/>
+      <stop offset="40%" stop-color="#FF7A00"/>
+      <stop offset="100%" stop-color="#E05300"/>
+    </linearGradient>
+
+    <!-- Electric Cyan Gradient -->
+    <linearGradient id="cyanGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#006699"/>
+      <stop offset="60%" stop-color="#00D9FF"/>
+      <stop offset="100%" stop-color="#70EFFF"/>
+    </linearGradient>
+
+    <!-- Center Prismatic Play Crest Gradient -->
+    <linearGradient id="prismGrad" x1="20%" y1="0%" x2="80%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="30%" stop-color="#FFC857"/>
+      <stop offset="70%" stop-color="#FF7A00"/>
+      <stop offset="100%" stop-color="#00D9FF"/>
+    </linearGradient>
+
+    <filter id="cinematicGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Base Rounded Container (Optional borderless) -->
+  <rect width="512" height="512" rx="112" fill="url(#bgGlow)"/>
+
+  <!-- Subtle Film Sprocket Aperture Ring (Geometric Filmstrip Motif) -->
+  <g opacity="0.45" stroke="#263341" stroke-width="3" fill="none">
+    <circle cx="256" cy="256" r="210" stroke-dasharray="14 10"/>
+    <circle cx="256" cy="256" r="186" stroke-dasharray="8 16"/>
+  </g>
+
+  <!-- Film Strip Arc - West & South (Electric Cyan Wing) -->
+  <path d="M 124 168
+           C 98 220, 96 300, 142 356
+           C 188 412, 276 434, 344 402
+           C 310 398, 250 380, 214 340
+           C 174 294, 172 230, 196 172
+           Z"
+        fill="url(#cyanGrad)" />
+
+  <!-- Cyan Sprocket Perforations -->
+  <g fill="#080B10">
+    <rect x="110" y="230" width="12" height="18" rx="3" transform="rotate(-15 116 239)"/>
+    <rect x="122" y="280" width="12" height="18" rx="3" transform="rotate(10 128 289)"/>
+    <rect x="150" y="330" width="12" height="18" rx="3" transform="rotate(35 156 339)"/>
+    <rect x="196" y="370" width="12" height="18" rx="3" transform="rotate(60 202 379)"/>
+    <rect x="254" y="392" width="12" height="18" rx="3" transform="rotate(82 260 401)"/>
+  </g>
+
+  <!-- Film Strip Arc - North & East (Saffron Wing) -->
+  <path d="M 388 344
+           C 414 292, 416 212, 370 156
+           C 324 100, 236 78, 168 110
+           C 202 114, 262 132, 298 172
+           C 338 218, 340 282, 316 340
+           Z"
+        fill="url(#saffronGrad)" />
+
+  <!-- Saffron Sprocket Perforations -->
+  <g fill="#080B10">
+    <rect x="390" y="264" width="12" height="18" rx="3" transform="rotate(165 396 273)"/>
+    <rect x="378" y="214" width="12" height="18" rx="3" transform="rotate(190 384 223)"/>
+    <rect x="350" y="164" width="12" height="18" rx="3" transform="rotate(215 356 173)"/>
+    <rect x="304" y="124" width="12" height="18" rx="3" transform="rotate(240 310 133)"/>
+    <rect x="246" y="102" width="12" height="18" rx="3" transform="rotate(262 252 111)"/>
+  </g>
+
+  <!-- Prismatic Dynamic Center Play Triangle (Motion & Cinema) -->
+  <g filter="url(#cinematicGlow)">
+    <!-- Base Play Shadow -->
+    <path d="M 216 168
+             L 344 248
+             C 356 256, 356 264, 344 272
+             L 216 352
+             C 202 360, 190 354, 190 338
+             L 190 182
+             C 190 166, 202 160, 216 168 Z"
+          fill="#080B10" opacity="0.6" transform="translate(4, 6)"/>
+
+    <!-- Dynamic Play Glyph with Prismatic Cut -->
+    <path d="M 216 168
+             L 344 248
+             C 356 256, 356 264, 344 272
+             L 216 352
+             C 202 360, 190 354, 190 338
+             L 190 182
+             C 190 166, 202 160, 216 168 Z"
+          fill="url(#prismGrad)"/>
+
+    <!-- Prismatic Facet Highlight -->
+    <path d="M 194 182
+             L 340 254
+             L 242 278
+             L 194 330 Z"
+          fill="#FFFFFF" opacity="0.25"/>
+
+    <!-- Light Sweep Core Flare -->
+    <circle cx="270" cy="246" r="16" fill="#FFFFFF" opacity="0.4" filter="url(#cinematicGlow)"/>
+  </g>
+
+  <!-- Cyan Laser Accent Pinpoint -->
+  <circle cx="140" cy="192" r="5" fill="#00D9FF"/>
+  <!-- Gold Laser Accent Pinpoint -->
+  <circle cx="372" cy="320" r="5" fill="#FFC857"/>
+</svg>

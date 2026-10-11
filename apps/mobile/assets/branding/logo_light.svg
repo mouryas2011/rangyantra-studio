@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 320" width="1000" height="320">
+  <defs>
+    <linearGradient id="lSaffron" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF9E00"/>
+      <stop offset="50%" stop-color="#FF7A00"/>
+      <stop offset="100%" stop-color="#D94800"/>
+    </linearGradient>
+
+    <linearGradient id="lCyan" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#007799"/>
+      <stop offset="60%" stop-color="#00A2BD"/>
+      <stop offset="100%" stop-color="#00D9FF"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1000" height="320" fill="#FFFFFF"/>
+
+  <!-- Left: Symbol -->
+  <g transform="translate(40, 40) scale(0.46875)">
+    <circle cx="256" cy="256" r="210" stroke="#E2E8F0" stroke-width="3" fill="none" stroke-dasharray="14 10"/>
+    <circle cx="256" cy="256" r="186" stroke="#E2E8F0" stroke-width="3" fill="none" stroke-dasharray="8 16"/>
+
+    <path d="M 124 168 C 98 220, 96 300, 142 356 C 188 412, 276 434, 344 402 C 310 398, 250 380, 214 340 C 174 294, 172 230, 196 172 Z"
+          fill="url(#lCyan)"/>
+
+    <g fill="#FFFFFF">
+      <rect x="110" y="230" width="12" height="18" rx="3" transform="rotate(-15 116 239)"/>
+      <rect x="122" y="280" width="12" height="18" rx="3" transform="rotate(10 128 289)"/>
+      <rect x="150" y="330" width="12" height="18" rx="3" transform="rotate(35 156 339)"/>
+      <rect x="196" y="370" width="12" height="18" rx="3" transform="rotate(60 202 379)"/>
+      <rect x="254" y="392" width="12" height="18" rx="3" transform="rotate(82 260 401)"/>
+    </g>
+
+    <path d="M 388 344 C 414 292, 416 212, 370 156 C 324 100, 236 78, 168 110 C 202 114, 262 132, 298 172 C 338 218, 340 282, 316 340 Z"
+          fill="url(#lSaffron)"/>
+
+    <g fill="#FFFFFF">
+      <rect x="390" y="264" width="12" height="18" rx="3" transform="rotate(165 396 273)"/>
+      <rect x="378" y="214" width="12" height="18" rx="3" transform="rotate(190 384 223)"/>
+      <rect x="350" y="164" width="12" height="18" rx="3" transform="rotate(215 356 173)"/>
+      <rect x="304" y="124" width="12" height="18" rx="3" transform="rotate(240 310 133)"/>
+      <rect x="246" y="102" width="12" height="18" rx="3" transform="rotate(262 252 111)"/>
+    </g>
+
+    <path d="M 216 168 L 344 248 C 356 256, 356 264, 344 272 L 216 352 C 202 360, 190 354, 190 338 L 190 182 C 190 166, 202 160, 216 168 Z"
+          fill="#0F172A"/>
+  </g>
+
+  <!-- Right: Wordmark -->
+  <g transform="translate(320, 0)">
+    <text x="0" y="132" font-family="'Inter', sans-serif" font-size="64" font-weight="900" letter-spacing="4" fill="#0F172A">
+      RANG<tspan fill="#FF7A00">YANTRA</tspan>
+    </text>
+    <rect x="528" y="82" width="118" height="32" rx="6" fill="#00A2BD" opacity="0.12"/>
+    <rect x="528" y="82" width="118" height="32" rx="6" stroke="#00A2BD" stroke-width="1.5" fill="none"/>
+    <text x="587" y="104" font-family="'Inter', sans-serif" font-size="16" font-weight="800" letter-spacing="3" fill="#008099" text-anchor="middle">
+      STUDIO
+    </text>
+    <text x="0" y="180" font-family="'Noto Sans Devanagari', sans-serif" font-size="24" font-weight="600" letter-spacing="2" fill="#D97706">
+      रंगयंत्र स्टूडियो
+    </text>
+    <line x1="0" y1="206" x2="640" y2="206" stroke="#CBD5E1" stroke-width="2"/>
+    <text x="0" y="244" font-family="'Inter', sans-serif" font-size="20" font-weight="500" letter-spacing="1.5" fill="#475569">
+      FROM IMAGINATION TO CINEMA • कल्पना से सिनेमा तक
+    </text>
+  </g>
+</svg>
