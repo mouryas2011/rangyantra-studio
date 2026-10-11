@@ -19,22 +19,27 @@ subprojects {
     project.evaluationDependsOn(":app")
 }
 subprojects {
-    val configureAndroid = {
+    val configureCompileSdk = {
         val androidExt = project.extensions.findByName("android")
         if (androidExt != null) {
-            try {
-                val method = androidExt.javaClass.getMethod("compileSdkVersion", Int::class.javaPrimitiveType)
-                method.invoke(androidExt, 36)
-            } catch (_: Exception) {
-                try {
-                    val method = androidExt.javaClass.getMethod("setCompileSdkVersion", Int::class.javaPrimitiveType)
-                    method.invoke(androidExt, 36)
-                } catch (_: Exception) {}
+            for (m in androidExt.javaClass.methods) {
+                if (m.name in listOf("setCompileSdk", "compileSdkVersion", "compileSdk")) {
+                    try {
+                        m.isAccessible = true
+                        m.invoke(androidExt, 36)
+                    } catch (_: Exception) {}
+                }
             }
         }
     }
-    project.plugins.withId("com.android.library") { configureAndroid() }
-    project.plugins.withId("com.android.application") { configureAndroid() }
+
+    if (project.state.executed) {
+        configureCompileSdk()
+    } else {
+        project.afterEvaluate {
+            configureCompileSdk()
+        }
+    }
 }
 tasks.register<Delete>("clean") {
     delete(rootProject.layout.buildDirectory)
