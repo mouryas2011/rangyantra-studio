@@ -19,7 +19,7 @@ subprojects {
     project.evaluationDependsOn(":app")
 }
 subprojects {
-    afterEvaluate {
+    val configureAndroid = {
         val androidExt = project.extensions.findByName("android")
         if (androidExt != null) {
             try {
@@ -33,6 +33,8 @@ subprojects {
             }
         }
     }
+    project.plugins.withId("com.android.library") { configureAndroid() }
+    project.plugins.withId("com.android.application") { configureAndroid() }
 }
 tasks.register<Delete>("clean") {
     delete(rootProject.layout.buildDirectory)
