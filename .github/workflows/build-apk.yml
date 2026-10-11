@@ -59,16 +59,53 @@ jobs:
       - name: Build Release APK
         run: |
           cd apps/mobile
-          flutter build apk --release
-          ls -la build/app/outputs/flutter-apk/
-          cp build/app/outputs/flutter-apk/app-release.apk build/app/outputs/flutter-apk/rangyantra-studio-release.apk
+          flutter build apk --release > build_release.log 2>&1 || {
+            echo "::error::Release APK build failed"
+            tail -n 120 build_release.log
+            echo "### ❌ Build Release Failure Log" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            tail -n 120 build_release.log >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            exit 1
+          }
+          echo "==== Search for built APKs ===="
+          find /home/runner/work -name "*.apk" -ls || true
+          mkdir -p build/app/outputs/flutter-apk
+          RELEASE_APK=$(find /home/runner/work -name "*release*.apk" | head -n 1)
+          if [ -n "$RELEASE_APK" ]; then
+            cp -v "$RELEASE_APK" build/app/outputs/flutter-apk/rangyantra-studio-release.apk
+          else
+            echo "::error::No release APK was found"
+            exit 1
+          fi
 
       - name: Build Debug APK
         run: |
           cd apps/mobile
-          flutter build apk --debug
-          ls -la build/app/outputs/flutter-apk/
-          cp build/app/outputs/flutter-apk/app-debug.apk build/app/outputs/flutter-apk/rangyantra-studio-debug.apk
+          flutter build apk --debug > build_debug.log 2>&1 || {
+            echo "::error::Debug APK build failed"
+            tail -n 120 build_debug.log
+            echo "### ❌ Build Debug Failure Log" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            tail -n 120 build_debug.log >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            exit 1
+          }
+          mkdir -p build/app/outputs/flutter-apk
+          DEBUG_APK=$(find /home/runner/work -name "*debug*.apk" | head -n 1)
+          if [ -n "$DEBUG_APK" ]; then
+            cp -v "$DEBUG_APK" build/app/outputs/flutter-apk/rangyantra-studio-debug.apk
+          else
+            echo "::error::No debug APK was found"
+            exit 1
+          fi
+
+      - name: Upload Build Logs on Failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-failure-logs
+          path: apps/mobile/*.log
 
       - name: Upload APKs as Workflow Artifacts
         uses: actions/upload-artifact@v4
