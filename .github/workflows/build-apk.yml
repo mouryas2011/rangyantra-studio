@@ -60,12 +60,14 @@ jobs:
         run: |
           cd apps/mobile
           flutter build apk --release
+          ls -la build/app/outputs/flutter-apk/
           cp build/app/outputs/flutter-apk/app-release.apk build/app/outputs/flutter-apk/rangyantra-studio-release.apk
 
       - name: Build Debug APK
         run: |
           cd apps/mobile
           flutter build apk --debug
+          ls -la build/app/outputs/flutter-apk/
           cp build/app/outputs/flutter-apk/app-debug.apk build/app/outputs/flutter-apk/rangyantra-studio-debug.apk
 
       - name: Upload APKs as Workflow Artifacts
